@@ -1,0 +1,36 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}
+Doh Clicker
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="menu">
+    <img src="{% static 'main/img/doh.png' %}" class="menu-dog">
+    
+    <div class="height-holder"></div>
+
+    <h1>DOH CLICKER</h1>
+    
+    <div class="menu-buttons">
+        <a href = "{% url 'register'%}">
+            <button class="menu-btn">register</button>
+        </a>
+
+        <a href = "{% url 'login'%}">
+            <button class="menu-btn">login</button>
+        </a>
+    </div>
+
+    <span class="version">dev build 0.2</span>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

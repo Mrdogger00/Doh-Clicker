@@ -1,0 +1,40 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}
+    Sign up
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main/css/register.css' %}">
+{% endblock %}
+
+{% block content %}
+<a href="/">
+    <button class="back-btn">Back</button>
+</a>
+
+<div class="register-box">
+    <div class="register-top">
+        <div class="register-error">
+            <p id="warning"></p>
+        </div>
+    </div>
+    <form id = "registerForm">
+        {% csrf_token %}
+        <input type="text" id="nickname" name="nickname" placeholder="nickname">
+        <input type="text" id="username" name="username" placeholder="@username">
+        <input type="password" id="password" name="password" placeholder="password">
+        <input type="password" id="password2" name="password2" placeholder="repeat password">
+        <button type="submit">Sign up</button>
+    </form>
+    <div class="message">
+        <p>A strong password should contain at least 10 characters including latin, numbers and special characters </p>
+        <img src="{% static 'main/img/smart_doh.png' %}">
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'main/register.js' %}"></script>
+{% endblock %}

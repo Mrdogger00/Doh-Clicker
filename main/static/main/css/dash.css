@@ -1,0 +1,490 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html{
+    background-color: #f3b564;
+
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+}
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.layout{
+    inset: 0;
+
+    height: 100%;
+
+    display: flex;
+    gap: 0;
+    padding: 0;
+
+    flex-direction: column;
+}
+
+
+
+.top{
+    inset: 0;
+
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+
+
+
+.left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn img {
+    width: 60%;
+    transition: transform 0.1s;
+}
+.btn img.clicked {
+    transform: scale(0.99) !important;
+}
+
+.btn img:hover {
+    transform: scale(1.05);
+}
+
+.coins-panel {
+    font-size: 24px;
+
+    background: #f8ed4a;
+
+    border: 2px solid #db930b;
+    border-radius: 12px;
+
+    text-align: center;
+
+    width: 32%;
+    height: 100%;
+
+    margin: -4% 0px 2% 0px;
+}
+.coin-icon {
+    width: 50px;
+    vertical-align: middle;
+}
+
+
+.stats_row{
+    display: flex;
+    width:400px;
+    gap: 15px;
+}
+
+.cpc_panel,
+.cps_panel{
+    flex: 1;
+    flex-direction: row;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 15px;
+
+    margin-top: 20px;
+
+    background: #f8ed4a;
+
+    border: 4px solid #db930b;
+    border-radius: 10px;
+
+    width:90px;
+    height: 60px;
+}
+
+.cpc_panel span,
+.cps_panel span{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.cpc-icon,
+.cps-icon{
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+
+
+.right {
+    display: flex;
+    flex-direction: row;
+
+    background: #ff2222;
+
+    border-style: solid;
+    border-color: #640202;
+    border-width: 4px 0 4px 4px;
+
+    border-radius: 12px 0 0 12px;
+
+    padding: 6px;
+
+    align-self: stretch;
+    gap: 6px;
+
+    height: 100%;
+    width: 52%;
+}
+
+.upgrade_scroll_left, .upgrade_scroll_right {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    width: 300px;
+    height: 400px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    border: 4px solid rgb(83, 0, 0);
+    border-radius: 10px;
+
+    box-sizing: border-box;
+
+    background: #532525;
+    overflow-y: auto;
+
+    gap: 5px;
+}
+.upgrade_scroll_left button, .upgrade_scroll_right button{
+    
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 60px;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    border-radius: 10px;
+    border: 3px solid #290c0c ;
+    background: #c46255;
+}
+.upgrade_scroll_left button:hover, .upgrade_scroll_right button:hover{
+    transform: scale(1.05);
+}
+.upgrade_scroll_left button.cooldown, .upgrade_scroll_right button.cooldown{
+    color: inherit;
+    filter: brightness(1.05) !important;
+    transform: scale(0.92);
+}
+.upgrade_scroll_left button:disabled, .upgrade_scroll_right button:disabled{
+    pointer-events: none;
+    color: inherit;
+    filter: grayscale(0.8);
+}
+
+
+.content{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    width: 105%;
+}
+.content img{
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+
+    margin-top: 2px;
+    margin-left: 4px; 
+}
+
+.upg-name{
+    flex: 1;
+
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 800;
+}
+.content p{
+    margin-top: 4px;
+
+    font-size: 12px;
+    opacity: .75;
+    font-weight: 450;
+}
+
+.bottom{
+    margin-left: auto;
+    position: relative;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.bottom img{
+    width: 30px;
+    height: 30px;
+}
+.cost{
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 6px;
+}
+.upgrade-btn.lock {
+    pointer-events: none;
+    opacity: 0.8;
+    filter: grayscale(0) saturate(2) !important;
+}
+
+.lock-overlay {
+    inset: 0;
+    object-fit: cover;
+    flex-direction: column;
+    scale: 1.05;
+    display: none;
+    position: absolute;
+}
+
+.lock-overlay img{
+    height: 100%;
+}
+
+.upgrade-btn.lock .lock-overlay {
+    display: flex;
+}
+
+
+
+
+.page-bottom{
+    width: 100%;
+    height: 100%;
+
+    background: #ff2222;
+
+    border-style: solid;
+    border-color: #640202;
+    border-width: 4px 0 4px 4px;
+}
+
+
+
+
+.settings-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    overflow: hidden;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    height: 90px;
+    width: 90px;
+}
+.settings-btn img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.1s;
+}
+.settings-btn img:hover{
+    transform: scale(1.05);
+}
+.settings-btn img.click{
+    transform: scale(0.98);
+}
+
+
+
+@keyframes diagonalMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 700px -700px;
+    }
+}
+
+.background{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background-repeat: repeat;
+    background-size: 700px 700px;
+    
+    opacity: 0.3;
+
+    animation: diagonalMove 30s linear infinite;
+}
+
+
+.modal{
+    position: fixed;
+
+    top: 50px;
+    left: 20px;
+
+    background: rgb(250, 234, 88);
+
+    border-radius: 12px;
+
+    padding: 20px;
+    gap: 5px;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    z-index: 100;
+
+    height: 400px;
+    width: 300px;
+
+    display: flex;
+    flex-direction: column;
+}
+.setting{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.setting label{
+    width: 70px;
+}
+.setting input{
+    flex: 1;
+}
+.setting span{
+    width: 30px;
+    text-align: right;
+}
+.hidden{
+    display: none;
+}
+
+
+#logoutBtn{
+    background: #db930b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.floating-error {
+    position: absolute;
+
+    min-width: 240px;
+
+    padding: 10px 16px;
+    background: rgba(200, 30, 30, 0.95);
+    border: 2px solid #ff5a5a;
+    border-radius: 10px;
+
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+
+    white-space: nowrap;
+
+    transform: translateY(-50%, 0);
+    opacity: 0;
+
+    transition: opacity 0.5s ease, transform 0.5s ease;
+
+    pointer-events: none;
+    z-index: 9999;
+}
+
+
+#particle-container{
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.coin-particle{
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    will-change: transform, opacity;
+
+    animation: coinFly 700ms ease-out forwards;
+}
+
+@keyframes coinFly{
+    from{
+        transform: translate(0,0) scale(1.6) rotate(0deg);
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translate(var(--x), var(--y))
+            scale(.9)
+            rotate(var(--rot));
+        opacity:0;
+    }
+}
+
+
+.floating-reward{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    pointer-events: none;
+    user-select: none;
+
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 0 black;
+
+    animation: rewardFly .7s ease-out forwards;
+}
+
+.floating-reward img{
+    width: 30px;
+    height: 30px;
+}
+
+.floating-reward span{
+    font-size: 10px;
+}
+
+@keyframes rewardFly{
+    from{
+        transform: translate(0,0) scale(1);
+        opacity:1;
+    }
+
+    to{
+        transform: translate(var(--x), var(--y)) scale(.9);
+        opacity:0;
+    }
+}

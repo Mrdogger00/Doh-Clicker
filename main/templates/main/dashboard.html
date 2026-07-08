@@ -1,0 +1,157 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}
+dashboard / Doh Clicker
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main/css/dash.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- кнопка налаштувань зліва зверху -->
+<button class="settings-btn">
+    <img src="{% static 'main/img/cogwheel.png' %}">
+</button>
+
+<div class="background" style="background-image: url('{% static "main/img/background.png" %}');"></div>
+
+<div class="layout">
+    <!-- ліва частина: пес + монети -->
+    <div class="top">
+        <div class="left">
+                <div class="stats_row">
+                <div class="cpc_panel">
+                    <span id="cpc">{{ profile.coins_per_click }}</span>
+                    <img src="{% static 'main/img/cpc_counter.png' %}" class="cpc-icon">
+                </div>
+                <div class="cps_panel">
+                    <span id="cps">{{ profile.coins_per_second }}</span>
+                    <img src="{% static 'main/img/cps_counter.png' %}" class="cps-icon">
+                </div>
+            </div>
+            <div class="btn">
+                <button onclick="mainClick()">
+                    <img src="{% static 'main/img/doh.png' %}">
+                </button>
+            </div>
+            <div class="coins-panel">
+                <img src="{% static 'main/img/coin.png' %}" class="coin-icon">
+                <span id="coins">{{ profile.coins }}</span>
+            </div>
+        </div>
+
+        <!-- права панель -->
+        <div class="right">
+            <div class="upgrade_scroll_left">
+            {% for upgrade in upgrades %}
+                {% if upgrade.upg_type == 1 %}
+                <button
+                    class="upgrade-btn lock"
+                    data-level="{{ upgrade.level }}"
+                    onclick="upgrade_btn(this, {{ upgrade.level }})"
+                >
+                    <div class="content">
+                        <img src="{% static 'main/img/upgrades/' %}{{ upgrade.image }}">
+                        <div class="upg-name">
+                            <span>{{ upgrade.name }}</span>
+                            <p>+{{ upgrade.value }} coin on click</p>
+                        </div>
+                        <div class="bottom">
+                            <img src="{% static 'main/img/coin.png' %}">
+                            <span class="cost" data-cost="{{ upgrade.next_cost }}">{{ upgrade.next_cost }}</span>
+                        </div>
+                    </div>
+
+                    <div class="lock-overlay">
+                        <img src="{% static 'main/img/lock.png' %}">
+                    </div>
+                </button>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <div class="upgrade_scroll_right">
+            {% for upgrade in upgrades %}
+                {% if upgrade.upg_type == 2 %}
+                <button
+                    class="upgrade-btn lock"
+                    data-level="{{ upgrade.level }}"
+                    onclick="upgrade_btn(this, {{ upgrade.level }})"
+                >
+                    <div class="content">
+                        <img src="{% static 'main/img/upgrades/' %}{{ upgrade.image }}">
+                        <div class="upg-name">
+                            <span>{{ upgrade.name }}</span>
+                            <p>+{{ upgrade.value }} coin per second</p>
+                        </div>
+                        <div class="bottom">
+                            <img src="{% static 'main/img/coin.png' %}">
+                            <span class="cost" data-cost="{{ upgrade.next_cost }}">{{ upgrade.next_cost }}</span>
+                        </div>
+                    </div>
+
+                    <div class="lock-overlay">
+                        <img src="{% static 'main/img/lock.png' %}">
+                    </div>
+                </button>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="page-bottom">
+        <div class="bottom-left">
+
+        </div>
+        <div class="bottom-right">
+
+        </div>
+    </div>
+</div>
+
+<div id="settingsModal" class="modal hidden">
+    <div class="setting">
+        <label for="soundVolume">Global volume</label>
+        <input
+            type="range"
+            id="soundVolume"
+            min="0"
+            max="100"
+            value="{{ global_volume }}">
+        <span id="soundVolumeValue">{{ global_volume }}%</span>
+    </div>
+
+    <div class="setting">
+        <label for="musicVolume">Music volume</label>
+
+        <input
+            type="range"
+            id="musicVolume"
+            min="0"
+            max="100"
+            value="{{ soundtrack_volume }}">
+
+        <span id="musicVolumeValue">{{ soundtrack_volume }}%</span>
+    </div>
+    <button id="logoutBtn">Log out</button>
+</div>
+
+<div id="particle-container"></div>
+
+<div class="floating-reward">
+    <img src="/static/main/img/coin.png">
+    <span>+151</span>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let displayedCoinsPerClick = Number("{{ profile.coins_per_click }}");
+    let displayedCoinsPerSecond = Number("{{ profile.coins_per_second }}");
+    let serverLevel = {{ profile.upgrade_level }};
+    const initialCoins = {{ profile.coins }};
+</script>
+<script src = "{% static 'main/dash.js' %}"></script>
+<script src = "{% static 'main/sound.js' %}"></script>
+{% endblock %}
