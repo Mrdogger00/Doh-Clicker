@@ -60,7 +60,8 @@ A full gameplay demonstration of **v0.2** is avaiable [here](https://t.me/empty_
 ## 🚀 Running locally
 
 ```shell
-$ git clone <repo>
+$ git clone https://github.com/Mrdogger00/Doh-clicker.git
+$ cd Doh-clicker
 
 $ python -m venv venv
 $ source venv/bin/activate
